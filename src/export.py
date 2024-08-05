@@ -6,15 +6,15 @@ def export(details: list[Detail], file_name: str):
     medication_details = list[Detail]
     allergy_details = list[Detail]
     for detail in details:
-        match detail.type:
-            case DetailType.PROCEDURE:
-                procedure_details.append(detail)
-            case DetailType.MEDICATION:
-                medication_details.append(detail)
-            case DetailType.ALLERGY:
-                allergy_details.append(detail)
-            case _:
-                print(f"unknown detail type {detail.type}")
+    # not using match because using 3.9
+        if detail.type == DetailType.PROCEDURE:
+            procedure_details.append(detail)
+        elif detail.type == DetailType.MEDICATION:
+            medication_details.append(detail)
+        elif detail.type == DetailType.ALLERGY:
+            allergy_details.append(detail)
+        else:
+            print(f"unknown detail type {detail.type}")
 
 
     doc = Document()

@@ -13,7 +13,6 @@ def pdf_to_text(file_path: str) -> list[list[str]]:
         for page in pdf:
             typed_text.append(page)
 
-
     pages = convert_from_path(file_path, 300)
     for page in pages:
         written_text.append(pytesseract.image_to_string(page))
