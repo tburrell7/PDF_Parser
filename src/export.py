@@ -2,9 +2,9 @@ from detail import Detail, DetailType
 from docx import Document
 
 def export(details: list[Detail], file_name: str):
-    procedure_details = []
-    medication_details = []
-    allergy_details = []
+    procedure_details = list[Detail]
+    medication_details = list[Detail]
+    allergy_details = list[Detail]
     for detail in details:
         match detail.type:
             case DetailType.PROCEDURE:
