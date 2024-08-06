@@ -9,12 +9,12 @@ def export(details: list[Detail], file_name: str = "output.docx"):
     allergy_details: list[Detail] = []
     for detail in details:
         if detail.type == DetailType.PROCEDURE:
-            procedure_details += detail
+            procedure_details.append(detail)
         elif detail.type == DetailType.MEDICATION:
             medication_details.append(detail)
         elif detail.type == DetailType.ALLERGY:
             print(f"{detail.value}")
-            allergy_details += detail
+            allergy_details.append(detail)
         else:
             print(f"unknown detail type {detail.type}")
 
