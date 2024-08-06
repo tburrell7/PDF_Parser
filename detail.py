@@ -10,3 +10,27 @@ class Detail(object):
         self.date = date
         self.page = page
 
+def equal_details(detail_a: Detail, detail_b: Detail) -> bool:
+    if (detail_a.value == detail_b.value) & (detail_a.page == detail_b.page):
+        return True
+    return False
+
+def sort_details(details: list[Detail]) -> list[Detail]:
+    if len(details) == 0:
+        return []
+    
+    details.sort(key=lambda obj: obj.value)
+    details.sort(key=lambda obj: obj.page)
+    
+    result = [details[0]]
+    i = 0
+    j = 1
+    while j < len(details):
+        if equal_details(details[i], details[j]):
+            j += 1
+        else:
+            result.append(details[j])
+            i = j
+            j += 1
+
+    return result

@@ -13,32 +13,27 @@ def export(details: list[Detail], file_name: str = "output.docx"):
         elif detail.type == DetailType.MEDICATION:
             medication_details.append(detail)
         elif detail.type == DetailType.ALLERGY:
-            print(f"{detail.value}")
             allergy_details.append(detail)
         else:
             print(f"unknown detail type {detail.type}")
 
 
     doc = Document()
+    doc.add_heading(f"{file_name} Patient Details", 1)
 
     doc.add_heading("Procedures", 2)
     for detail in procedure_details:
-        print("Adding Procedure")
-        doc.add_paragraph(f"Name: {detail.value}\t Page: {detail.page}", "List Bullet")
+        doc.add_paragraph(f"{detail.value}\t\t\t Page: {detail.page}", "List Number")
 
     doc.add_heading("Medications", 2)
     # TODO: add dates
-    print("Adding Medication")
     for detail in medication_details:
-        print(detail.value)
-        doc.add_paragraph(f"Name: {detail.value}\t Page: {detail.page}", "List Bullet")
+        doc.add_paragraph(f"{detail.value}\t\t\t Page: {detail.page}", "List Number")
 
     doc.add_heading("Allergies", 2)
-    print("Adding Allergy")
     for detail in allergy_details:
-        print(detail.value)
-        doc.add_paragraph(f"Name: {detail.value}\t Page: {detail.page}", "List Bullet")
+        doc.add_paragraph(f"{detail.value}\t\t\t Page: {detail.page}", "List Number")
 
-    doc.save(file_name)
+    doc.save("output.docx")
     # TODO check for existence
             
