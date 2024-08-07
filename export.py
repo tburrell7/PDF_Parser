@@ -2,8 +2,7 @@ from detail import Detail, DetailType
 from docx import Document
 
 def export(details: list[Detail], file_name: str = "output.docx"):
-
-    print("creating output")
+    print("Creating output")
     procedure_details: list[Detail] = []
     medication_details: list[Detail] = []
     allergy_details: list[Detail] = []
@@ -23,17 +22,21 @@ def export(details: list[Detail], file_name: str = "output.docx"):
 
     doc.add_heading("Procedures", 2)
     for detail in procedure_details:
-        doc.add_paragraph(f"{detail.value}\t\t\t Page: {detail.page}", "List Number")
+        if detail.date is not None:
+            doc.add_paragraph(f"\tProcedure {detail.value} occured on Date {detail.date}. Referenced on Page: {detail.page}", "List Number")
+        else:
+            doc.add_paragraph(f"\tProcedure {detail.value}. Referenced on Page: {detail.page}", "List Number")
 
     doc.add_heading("Medications", 2)
-    # TODO: add dates
     for detail in medication_details:
-        doc.add_paragraph(f"{detail.value}\t\t\t Page: {detail.page}", "List Number")
+        if detail.date is not None:
+            doc.add_paragraph(f"\tMedication {detail.value} occured on Date {detail.date}. Referenced on Page: {detail.page}", "List Number")
+        else:
+            doc.add_paragraph(f"\tMedication {detail.value}. Referenced on Page: {detail.page}", "List Number")
 
     doc.add_heading("Allergies", 2)
     for detail in allergy_details:
-        doc.add_paragraph(f"{detail.value}\t\t\t Page: {detail.page}", "List Number")
+        doc.add_paragraph(f"\t Allergy {detail.value}. Referenced on Page: {detail.page}", "List Number")
 
     doc.save("output.docx")
-    # TODO check for existence
             

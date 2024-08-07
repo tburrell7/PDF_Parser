@@ -11,11 +11,13 @@ class Detail(object):
         self.page = page
 
 def equal_details(detail_a: Detail, detail_b: Detail) -> bool:
+    """returns true if two Detail objects have the same page and value."""
     if (detail_a.value == detail_b.value) & (detail_a.page == detail_b.page):
         return True
     return False
 
 def sort_details(details: list[Detail]) -> list[Detail]:
+    """sorts details in page order and then in alphabetical order. Also removes duplicates."""
     if len(details) == 0:
         return []
     
