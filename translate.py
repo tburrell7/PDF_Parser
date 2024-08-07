@@ -25,9 +25,8 @@ def translate(file_name: str) -> tuple[list[str], list[str]]:
 
     # Extract text using Tesseract OCR
     pages = convert_from_path(file_name)
-    i = 0
+    
     for page in pages:
         written_text += [str(pytesseract.image_to_string(page))]
-        i += 1
 
     return typed_text, written_text
