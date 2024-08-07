@@ -8,5 +8,5 @@ file_name = sys.argv[1]
 typed_text, written_text = translate(file_name)
 details = process_text(typed_text)
 details += process_text(written_text)
-export(sort_details(details))
+export(sort_details(details), file_name)
 sys.exit()

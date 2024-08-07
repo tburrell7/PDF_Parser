@@ -1,7 +1,7 @@
 from detail import Detail, DetailType
 from docx import Document
 
-def export(details: list[Detail], file_name: str = "output.docx"):
+def export(details: list[Detail], file_name: str):
     """prints out details in a word document"""
     print("Creating output")
 
