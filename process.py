@@ -13,22 +13,22 @@ def process_text(typed_text: list[str], written_text: list[str]) -> list[Detail]
         written_res = pipe(written_text[i])
 
         for ent in typed_res:
-            print(ent)
-            if ent["entity_group"] == "MEDICATION":
-                details.append(Detail(DetailType.MEDICATION, ent["word"].lower(), None, i+1))
-            elif ent["entity_group"] == "DISEASE_DISORDER":
-                details.append(Detail(DetailType.ALLERGY, ent["word"].lower(), None, i+1))
-            elif ent["entity_group"] == "THERAPEUTIC_PROCEDURE":
-                details.append(Detail(DetailType.PROCEDURE, ent["word"].lower(), None, i+1))
+            if ent["score"] > 0.25:
+                if ent["entity_group"] == "MEDICATION":
+                    details.append(Detail(DetailType.MEDICATION, ent["word"].lower(), None, i+1))
+                elif ent["entity_group"] == "DISEASE_DISORDER":
+                    details.append(Detail(DetailType.ALLERGY, ent["word"].lower(), None, i+1))
+                elif ent["entity_group"] == "THERAPEUTIC_PROCEDURE":
+                    details.append(Detail(DetailType.PROCEDURE, ent["word"].lower(), None, i+1))
 
         for ent in written_res:
-            print(ent)
-            if ent["entity_group"] == "MEDICATION":
-                details.append(Detail(DetailType.MEDICATION, ent["word"].lower(), None, i+1))
-            elif ent["entity_group"] == "DISEASE_DISORDER":
-                details.append(Detail(DetailType.ALLERGY, ent["word"].lower(), None, i+1))
-            elif ent["entity_group"] == "THERAPEUTIC_PROCEDURE":
-                details.append(Detail(DetailType.PROCEDURE, ent["word"].lower(), None, i+1))
+            if ent["score"] > 0.25:
+                if ent["entity_group"] == "MEDICATION":
+                    details.append(Detail(DetailType.MEDICATION, ent["word"].lower(), None, i+1))
+                elif ent["entity_group"] == "DISEASE_DISORDER":
+                    details.append(Detail(DetailType.ALLERGY, ent["word"].lower(), None, i+1))
+                elif ent["entity_group"] == "THERAPEUTIC_PROCEDURE":
+                    details.append(Detail(DetailType.PROCEDURE, ent["word"].lower(), None, i+1))
         i += 1
 
     return sort_details(details)
