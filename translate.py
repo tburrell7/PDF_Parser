@@ -13,19 +13,16 @@ def translate(file_path: str) -> tuple[list[str], list[str]]:
     pdf = fitz.open(file_path)
     num_pages = pdf.page_count
 
-    # Extract text page by page
-    # for page_number in range(0, num_pages):
-    for page_number in range(0, 10):
+    # Extract text using PyMuPDF
+    for page_number in range(0, num_pages):
         page = pdf.load_page(page_number)
         typed_text += [page.get_text()]
     pdf.close()
 
-    # Extract text using tesseract OCR
+    # Extract text using Tesseract OCR
     pages = convert_from_path(file_path)
     i = 0
     for page in pages:
-        if i >= 10:
-            break
         written_text += [str(pytesseract.image_to_string(page))]
         i += 1
 

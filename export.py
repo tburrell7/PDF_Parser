@@ -2,7 +2,10 @@ from detail import Detail, DetailType
 from docx import Document
 
 def export(details: list[Detail], file_name: str = "output.docx"):
+    """prints out details in a word document"""
     print("Creating output")
+
+    #sort details by their respective type
     procedure_details: list[Detail] = []
     medication_details: list[Detail] = []
     allergy_details: list[Detail] = []
